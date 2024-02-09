@@ -13,6 +13,11 @@ import java.util.Scanner;
 public class CalculadoraSimple {
 
     public static void main(String[] args) {
+        
+        for (String arg : args) {
+            System.out.println("Parametro: " + arg);
+        }
+        
         Scanner scanner = new Scanner(System.in);
         int numero1;
         int numero2;
