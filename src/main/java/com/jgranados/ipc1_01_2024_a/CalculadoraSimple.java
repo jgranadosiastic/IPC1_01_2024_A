@@ -11,11 +11,14 @@ import java.util.Scanner;
  * @author jose
  */
 public class CalculadoraSimple {
+    
+    static int sumas;
 
     public static void main(String[] args) {
         
         for (String arg : args) {
             System.out.println("Parametro: " + arg);
+            sumas = 1;
         }
         
         Scanner scanner = new Scanner(System.in);
@@ -73,7 +76,7 @@ public class CalculadoraSimple {
      */
     static int suma(int unNumero, int otroNumero) {
         int total;
-	
+	sumas = 1;
         total = unNumero + otroNumero;
 
 	return total;
