@@ -23,7 +23,8 @@ public class ArticulosMain {
             int costoBase = Integer.valueOf(scanner.nextLine());
 
             Articulo elArticulo = new Articulo();
-            elArticulo.costoBase = costoBase;
+            elArticulo.cambiarCostoBase(costoBase);
+            //elArticulo.costoBase = 25.5;
             System.out.println("El precio al mayor es: " + elArticulo.calcularPrecioAlMayor());
             System.out.println("El precio al detalle es: " + elArticulo.calcularPrecioDetalle());
             

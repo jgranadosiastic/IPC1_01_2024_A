@@ -33,10 +33,9 @@ public class AlumnosMain {
             notas[2] = Integer.valueOf(scanner.nextLine());
 
             Alumno elAlumno = new Alumno();
-            elAlumno.cui = cui;
-            elAlumno.nombre = nombre;
-            elAlumno.notas = notas;
-            
+            elAlumno.ingresarCui(cui);
+            elAlumno.ingresarNombre(nombre);
+            elAlumno.ingresarNotas(notas);
             alumnos[i] = elAlumno;
 
         }

@@ -9,15 +9,18 @@ package com.jgranados.ipc1_01_2024_a.poo.abstraccion.alumnos;
  * @author jose
  */
 public class Alumno {
-    String cui;
-    String nombre;
-    int[] notas;
     
-    boolean esAprobado() {
-        return calcularNotaFinal() >= 61;
+    public static final int NOTA_MINIMA_APROBACION = 61;
+    
+    private String cui;
+    private String nombre;
+    private int[] notas;
+    
+    private boolean esAprobado() {
+        return calcularNotaFinal() >= NOTA_MINIMA_APROBACION;
     }
     
-    double calcularNotaFinal() {
+    private double calcularNotaFinal() {
         int total = 0;
         for (int nota : notas) {
             total += nota;
@@ -26,7 +29,7 @@ public class Alumno {
         return total / notas.length;
     }
     
-    void imprimirDatos() {
+    public void imprimirDatos() {
         double notaFinal = calcularNotaFinal();
         System.out.println("CIU: " + cui);
         System.out.println("Nombre: " + nombre);
@@ -36,5 +39,17 @@ public class Alumno {
         } else {
             System.out.println("Resultado: No Aprobado");
         }
+    }
+    
+    public void ingresarCui(String cuiNuevo) {
+        cui = cuiNuevo;
+    }
+    
+    public void ingresarNombre(String nombreNuevo) {
+        nombre = nombreNuevo;
+    }
+    
+    public void ingresarNotas(int[] notasNuevas) {
+        notas = notasNuevas;
     }
 }
