@@ -14,14 +14,6 @@ import java.util.Scanner;
  */
 public class Menu {
     
-    public static void main(String[] args) {
-        Menu menu = new Menu();
-        Jugador[] jugadores = menu.pedirJugadores();
-        
-        MotorJuego motor = new MotorJuego();
-        motor.echarPunta(jugadores);
-    }
-    
     public Jugador[] pedirJugadores() {
         Scanner scanner = new Scanner(System.in);
         int cantidadJugadores;
