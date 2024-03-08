@@ -10,4 +10,8 @@ package com.jgranados.ipc1_01_2024_a.poo.carreras.vehiculos.stickers;
  */
 public class Sticker {
     
+    public int calcularPremioExtra() {
+        // codigo basura
+        return 0;
+    }
 }

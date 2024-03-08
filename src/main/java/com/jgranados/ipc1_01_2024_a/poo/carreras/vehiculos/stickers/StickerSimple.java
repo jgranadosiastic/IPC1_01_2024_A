@@ -8,6 +8,12 @@ package com.jgranados.ipc1_01_2024_a.poo.carreras.vehiculos.stickers;
  *
  * @author jose
  */
-public class StickerSimple {
+public class StickerSimple extends Sticker {
+    private static final int PREMIO = 7;
+
+    @Override
+    public int calcularPremioExtra() {
+        return PREMIO;
+    }
     
 }

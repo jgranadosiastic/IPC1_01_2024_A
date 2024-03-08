@@ -34,6 +34,12 @@ public class Jugador {
     public Vehiculo getVehiculoEnUso() {
         return vehiculoEnUso;
     }
+
+    public int getDinero() {
+        return dinero;
+    }
     
-    
+    public void recibirPremio(int premio) {
+        dinero += premio;
+    }
 }
