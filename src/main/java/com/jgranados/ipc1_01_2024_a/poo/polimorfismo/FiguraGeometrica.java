@@ -8,17 +8,21 @@ package com.jgranados.ipc1_01_2024_a.poo.polimorfismo;
  *
  * @author jose
  */
-public class FiguraGeometrica {
+public abstract class FiguraGeometrica {
     
-    public double calcularArea() {
-        return 0;
+    private String color;
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
     
-    public double calcularPerimetro() {
-        return 0;
-    }
+    public abstract double calcularArea();
     
-    public void pedirDatos() {
-        System.out.println("Aqui no hay nada!");
-    }
+    public abstract double calcularPerimetro();
+    
+    public abstract void pedirDatos();
 }

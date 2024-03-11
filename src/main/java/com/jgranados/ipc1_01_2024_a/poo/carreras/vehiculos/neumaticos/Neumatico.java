@@ -10,9 +10,7 @@ import com.jgranados.ipc1_01_2024_a.poo.carreras.pistas.Pista;
  *
  * @author jose
  */
-public class Neumatico {
+public abstract class Neumatico {
     
-    public int calcularPenalizacionPista(Pista pista) {
-        return 0;
-    }
+    public abstract int calcularPenalizacionPista(Pista pista);
 }

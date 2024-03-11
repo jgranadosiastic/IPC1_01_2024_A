@@ -8,10 +8,7 @@ package com.jgranados.ipc1_01_2024_a.poo.carreras.vehiculos.stickers;
  *
  * @author jose
  */
-public class Sticker {
+public abstract class Sticker {
     
-    public int calcularPremioExtra() {
-        // codigo basura
-        return 0;
-    }
+    public abstract int calcularPremioExtra();
 }
