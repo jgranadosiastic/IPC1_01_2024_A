@@ -51,7 +51,7 @@ public class Ejemplo01Archivos {
     
     public void escribirEnArchivoDeTexto(String contenido) {
         File archivoTexto = new File(PATH_ARCHIVO);
-        FileOutputStream fileOutputStream = null;
+        /*FileOutputStream fileOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(archivoTexto);
             fileOutputStream.write(contenido.getBytes(StandardCharsets.UTF_8));
@@ -80,12 +80,12 @@ public class Ejemplo01Archivos {
             // manejar error
             e.printStackTrace();
         }
-        
+        */
         try(FileWriter fileWriter = new FileWriter(archivoTexto, true);
                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
-            bufferedWriter.append(contenido);
             bufferedWriter.newLine();
             bufferedWriter.append(contenido);
+            //bufferedWriter.append(contenido);
         } catch (IOException e) {
             // manejar error
             e.printStackTrace();
