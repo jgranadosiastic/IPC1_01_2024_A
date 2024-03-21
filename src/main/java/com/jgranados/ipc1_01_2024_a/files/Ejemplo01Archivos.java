@@ -4,12 +4,18 @@
  */
 package com.jgranados.ipc1_01_2024_a.files;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 /**
  *
@@ -18,7 +24,13 @@ import java.nio.charset.StandardCharsets;
 public class Ejemplo01Archivos {
 
     private static final String PATH_CARPETA = "/home/jose/CUNOC/IPC1";
-    private static final String PATH_ARCHIVO = "/home/jose/CUNOC/IPC1/01 2024/texto.txt";
+    
+    private static final String PATH_RELATIVO_ARCHIVO = "texto.txt";
+    private static final String PATH_ABSOLUTO_ARCHIVO = "/home/jose/CUNOC/IPC1/01 2024/texto.txt";
+    
+    // aqui pueden cambiar de asignacion y probar con el path absoluto y relativo
+    private static final String PATH_ARCHIVO = PATH_RELATIVO_ARCHIVO;
+    
 
     public void conectarConCarpeta() {
         File carpeta = new File(PATH_CARPETA);
@@ -69,5 +81,50 @@ public class Ejemplo01Archivos {
             e.printStackTrace();
         }
         
+        try(FileWriter fileWriter = new FileWriter(archivoTexto, true);
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+            bufferedWriter.append(contenido);
+            bufferedWriter.newLine();
+            bufferedWriter.append(contenido);
+        } catch (IOException e) {
+            // manejar error
+            e.printStackTrace();
+        }   
+    }
+    
+    public void leerDesdeArchivoTexto() {
+        File archivoTexto = new File(PATH_ARCHIVO);
+        try (FileInputStream fileInputStream = new FileInputStream(archivoTexto);) {
+            int byteEnArchivo = fileInputStream.read();
+            while (byteEnArchivo != -1) {
+                char caracter = (char) byteEnArchivo;
+                System.out.println(caracter);
+                byteEnArchivo = fileInputStream.read();
+            }
+        } catch (IOException e) {
+            // manejar error
+            e.printStackTrace();
+        }
+        
+        try (FileReader fileReader = new FileReader(archivoTexto);
+                BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+            String linea = bufferedReader.readLine();
+            while(linea != null) {
+                System.out.println(linea);
+                linea = bufferedReader.readLine();
+            }
+        } catch (IOException e) {
+        }
+        
+        try (Scanner scannerFile = new Scanner(archivoTexto)) {
+            while (true) {
+                String linea = scannerFile.nextLine();
+                System.out.println(linea);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchElementException ex) {
+            System.out.println("no hay mas lineas por leer");
+        }
     }
 }

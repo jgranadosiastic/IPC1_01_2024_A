@@ -14,5 +14,7 @@ public class Main {
         Ejemplo01Archivos ejemplo01Archivos = new Ejemplo01Archivos();
         ejemplo01Archivos.conectarConCarpeta();
         ejemplo01Archivos.escribirEnArchivoDeTexto("Hola Mundo!!!\nOtro Hola");
+        
+        ejemplo01Archivos.leerDesdeArchivoTexto();
     }
 }
