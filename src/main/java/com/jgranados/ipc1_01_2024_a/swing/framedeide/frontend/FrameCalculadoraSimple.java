@@ -2,9 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.jgranados.ipc1_01_2024_a.swing.framedeide;
+package com.jgranados.ipc1_01_2024_a.swing.framedeide.frontend;
 
+import com.jgranados.ipc1_01_2024_a.swing.framedeide.backend.Calculadora;
+import com.jgranados.ipc1_01_2024_a.swing.framedeide.excepciones.CalculadoraException;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,6 +15,7 @@ import javax.swing.JLabel;
  */
 public class FrameCalculadoraSimple extends javax.swing.JFrame {
 
+    private Calculadora calculadora = new Calculadora();
     /**
      * Creates new form FrameDesdeIDE
      */
@@ -35,6 +39,7 @@ public class FrameCalculadoraSimple extends javax.swing.JFrame {
         btnSumar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         lblParaResultado = new javax.swing.JLabel();
+        btnRestar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +56,13 @@ public class FrameCalculadoraSimple extends javax.swing.JFrame {
 
         jLabel3.setText("Resultado: ");
 
+        btnRestar.setText("Restar");
+        btnRestar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,6 +70,12 @@ public class FrameCalculadoraSimple extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblParaResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSumar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -68,13 +86,10 @@ public class FrameCalculadoraSimple extends javax.swing.JFrame {
                                 .addComponent(lblNumero2)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtNumero2)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 146, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblParaResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
-                        .addComponent(btnSumar)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnRestar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -89,29 +104,43 @@ public class FrameCalculadoraSimple extends javax.swing.JFrame {
                     .addComponent(lblNumero2)
                     .addComponent(txtNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(lblParaResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(btnSumar)))
-                .addContainerGap(174, Short.MAX_VALUE))
+                        .addComponent(btnSumar))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(lblParaResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(btnRestar)
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumarActionPerformed
-        int numero1 = Integer.valueOf(txtNumero1.getText());
-        int numero2 = Integer.valueOf(txtNumero2.getText());
-        int total = numero1 + numero2;
-        lblParaResultado.setText(total + "");
-        
+        try {
+            double total = calculadora.sumar(txtNumero1.getText(), txtNumero2.getText());
+            lblParaResultado.setText(total + "");
+        } catch (CalculadoraException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnSumarActionPerformed
+
+    private void btnRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestarActionPerformed
+        try {
+            double total = calculadora.restar(txtNumero1.getText(), txtNumero2.getText());
+        lblParaResultado.setText(total + "");
+        } catch (CalculadoraException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRestarActionPerformed
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRestar;
     private javax.swing.JButton btnSumar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblNumero1;
