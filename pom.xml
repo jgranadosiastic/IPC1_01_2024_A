@@ -24,7 +24,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.jgranados.ipc1_01_2024_a.CalculadoraSimple</mainClass>
+                            <mainClass>com.jgranados.ipc1_01_2024_a.swing.imagenes.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
