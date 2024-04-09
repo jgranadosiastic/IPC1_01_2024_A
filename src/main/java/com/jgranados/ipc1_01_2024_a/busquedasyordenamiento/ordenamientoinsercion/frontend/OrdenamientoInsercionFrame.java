@@ -4,6 +4,7 @@
  */
 package com.jgranados.ipc1_01_2024_a.busquedasyordenamiento.ordenamientoinsercion.frontend;
 
+import com.jgranados.ipc1_01_2024_a.busquedasyordenamiento.ordenamientoinsercion.backend.OrdenamientoPorBurbuja;
 import com.jgranados.ipc1_01_2024_a.busquedasyordenamiento.ordenamientoinsercion.backend.OrdenamientoPorInsercion;
 
 /**
@@ -13,12 +14,13 @@ import com.jgranados.ipc1_01_2024_a.busquedasyordenamiento.ordenamientoinsercion
 public class OrdenamientoInsercionFrame extends javax.swing.JFrame {
 
     private Etiqueta[] etiquetas;
-    private OrdenamientoPorInsercion ordenamiento;
+
+    //private OrdenamientoPorInsercion ordenamiento;
     /**
      * Creates new form OrdenamientoInsercionFrame
      */
     public OrdenamientoInsercionFrame() {
-        etiquetas = new Etiqueta[] {new Etiqueta(8),
+        etiquetas = new Etiqueta[]{new Etiqueta(8),
             new Etiqueta(11),
             new Etiqueta(7),
             new Etiqueta(30),
@@ -31,7 +33,7 @@ public class OrdenamientoInsercionFrame extends javax.swing.JFrame {
         };
         initComponents();
         mostrarEtiquetas();
-        ordenamiento = new OrdenamientoPorInsercion();
+        //ordenamiento = new OrdenamientoPorInsercion();
     }
 
     /**
@@ -67,7 +69,7 @@ public class OrdenamientoInsercionFrame extends javax.swing.JFrame {
                     .addComponent(pnlEtiquetas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnOrdenar)
-                        .addGap(0, 570, Short.MAX_VALUE)))
+                        .addGap(0, 614, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -76,7 +78,7 @@ public class OrdenamientoInsercionFrame extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(btnOrdenar)
                 .addGap(33, 33, 33)
-                .addComponent(pnlEtiquetas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlEtiquetas, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -84,7 +86,27 @@ public class OrdenamientoInsercionFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
-        etiquetas = ordenamiento.ordenarEtiquetas(etiquetas);
+        try {
+            etiquetas = new Etiqueta[]{new Etiqueta(8),
+                new Etiqueta(11),
+                new Etiqueta(7),
+                new Etiqueta(30),
+                new Etiqueta(20),
+                new Etiqueta(24),
+                new Etiqueta(23),
+                new Etiqueta(22),
+                new Etiqueta(15),
+                new Etiqueta(1)
+            };
+            //etiquetas = ordenamiento.ordenarEtiquetas(etiquetas);
+
+            OrdenamientoPorBurbuja ordenamiento = new OrdenamientoPorBurbuja(this);
+            ordenamiento.setArregloNoOrdenado(etiquetas);
+            ordenamiento.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         mostrarEtiquetas();
     }//GEN-LAST:event_btnOrdenarActionPerformed
 
@@ -122,16 +144,23 @@ public class OrdenamientoInsercionFrame extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void mostrarEtiquetas() {
+
+    public void mostrarEtiquetas() {
         pnlEtiquetas.removeAll();
-        pnlEtiquetas.repaint();
         for (int i = 0; i < etiquetas.length; i++) {
             Etiqueta etiqueta = etiquetas[i];
             pnlEtiquetas.add(etiqueta);
         }
         pnlEtiquetas.validate();
         pnlEtiquetas.repaint();
+    }
+    
+    public void desactivarBtnOrdenamiento() {
+        this.btnOrdenar.setEnabled(false);
+    }
+    
+    public void activarBtnOrdenamiento() {
+        this.btnOrdenar.setEnabled(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
