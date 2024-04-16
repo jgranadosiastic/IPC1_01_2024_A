@@ -4,6 +4,10 @@
  */
 package com.jgranados.ipc1_01_2024_a.pilasycolas;
 
+import java.awt.Button;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
 /**
  *
  * @author jose
@@ -38,17 +42,37 @@ public class Main {
 
         try {
 
-            Accion ac1 = new Accion();
+            /*Accion ac1 = new Accion(5);
             PilaObjeto pilaObjetos = new PilaObjeto(5);
             pilaObjetos.apilar(ac1);
+            pilaObjetos.apilar("cualquier otra cosa");
+
+            Accion valorDesapilado = (Accion) pilaObjetos.desapilar();
             
+            Accion valorDesapilado2 = (Accion) pilaObjetos.desapilar();
+
+            System.out.println("Accion desapilada: " + valorDesapilado);
+            System.out.println("Accion desapilada: " + valorDesapilado2);
+
+            pilaObjetos.apilar("algo");*/
             
+            PilaGenerica<String> pilaStrings = new PilaGenerica<>(5);
+            pilaStrings.apilar("algo");
+            String dato = pilaStrings.desapilar();
             
+            pilaStrings.apilar(dato);
             
+            PilaGenerica<JButton> pilaButtons = new PilaGenerica<>(5);
             
-            pilaObjetos.apilar("algo");
-        } catch (Exception e) {
+        } catch (PilaException e) {
+            e.printStackTrace();
         }
+        
+        ClaseGenericaMultiple<JFrame, String, JButton> claseGenericaMultiple = new ClaseGenericaMultiple<>();
+        ClaseGenericaMultiple<String, JButton, String> claseGenericaMultiple2 = new ClaseGenericaMultiple<>();
+        
+        claseGenericaMultiple.getClase1();
+        claseGenericaMultiple2.getClase1();
 
     }
 

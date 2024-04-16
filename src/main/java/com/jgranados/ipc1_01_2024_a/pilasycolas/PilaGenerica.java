@@ -8,19 +8,19 @@ package com.jgranados.ipc1_01_2024_a.pilasycolas;
  *
  * @author jose
  */
-public class PilaObjeto {
+public class PilaGenerica<T> {
 
-    private Object[] contenedor;
+    private T[] contenedor;
     private int tamaño;
     private int tope;
 
-    public PilaObjeto(int tamaño) {
+    public PilaGenerica(int tamaño) {
         this.tamaño = tamaño;
-        contenedor = new Object[tamaño];
+        contenedor = (T[]) new Object[tamaño];
         tope = -1;
     }
 
-    public void apilar(Object valor) throws PilaException {
+    public void apilar(T valor) throws PilaException {
 
         if (estaLlena()) {
             throw new PilaException("La pila ya esta llena cuando ingresaba el valor: " + valor);
@@ -30,18 +30,18 @@ public class PilaObjeto {
         contenedor[tope] = valor;
     }
 
-    public Object desapilar() throws PilaException {
+    public T desapilar() throws PilaException {
         if (estaVacia()) {
             throw new PilaException("La pila ya esta vacia. ");
         }
 
-        Object valor = contenedor[tope];
+        T valor = contenedor[tope];
         tope--;
         
         return valor;
     }
 
-    public Object verTope() throws PilaException {
+    public T verTope() throws PilaException {
         if (estaVacia()) {
             throw new PilaException("La pila ya esta vacia. ");
         }
