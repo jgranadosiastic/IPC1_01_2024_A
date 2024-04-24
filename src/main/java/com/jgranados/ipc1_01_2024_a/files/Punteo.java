@@ -4,19 +4,24 @@
  */
 package com.jgranados.ipc1_01_2024_a.files;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author jose
+ * clase POJO: Plain Old Java Object
  */
-public class Punteo {
+public class Punteo implements Serializable {
 
-    private String nombre1 ;
-    private int punteo1 ;
-    private String nombre2 ;
-    private int punteo2 ;
+    public static final long serialVersionUID = 101L;
+
+    private String nombre1;
+    private int punteo1;
+    private String nombre2;
+    private int punteo2;
     private LocalDate fecha;
+    private int tiempo;
 
     public Punteo(String nombre1, int punteo1, String nombre2, int punteo2, LocalDate fecha) {
         this.nombre1 = nombre1;
@@ -24,6 +29,15 @@ public class Punteo {
         this.nombre2 = nombre2;
         this.punteo2 = punteo2;
         this.fecha = fecha;
+    }
+    
+    public Punteo(String nombre1, int punteo1, String nombre2, int punteo2, LocalDate fecha, int tiempo) {
+        this.nombre1 = nombre1;
+        this.punteo1 = punteo1;
+        this.nombre2 = nombre2;
+        this.punteo2 = punteo2;
+        this.fecha = fecha;
+        this.tiempo = tiempo;
     }
 
     public String getNombre1() {
@@ -66,6 +80,15 @@ public class Punteo {
         this.fecha = fecha;
     }
 
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
+    }
+    
+    
 
     public void imprimirPunteo() {
         System.out.println("Punteo:");
@@ -74,10 +97,8 @@ public class Punteo {
         System.out.println("Nombre2: " + nombre2);
         System.out.println("Punteo2: " + punteo2);
         System.out.println("Fecha: " + fecha);
-        
+        System.out.println("Tiempo: " + tiempo);
+
     }
 
-   
-    
-    
 }

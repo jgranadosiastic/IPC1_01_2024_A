@@ -34,7 +34,7 @@ public class EjemploBinarios {
 
         EjemploBinarios ejemploBinarios = new EjemploBinarios();
 
-        ejemploBinarios.escribirEnBinario(punteo);
+        //ejemploBinarios.escribirEnBinario(punteo);
         ejemploBinarios.leerDesdeBinario();
 
     }
