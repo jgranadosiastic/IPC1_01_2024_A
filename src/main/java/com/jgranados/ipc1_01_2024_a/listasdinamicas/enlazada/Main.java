@@ -4,6 +4,8 @@
  */
 package com.jgranados.ipc1_01_2024_a.listasdinamicas.enlazada;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author jose
@@ -31,5 +33,11 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+        ListaEnlazadaGenerica<String> listaEnlazadaStrings = new ListaEnlazadaGenerica<>();
+        listaEnlazadaStrings.agregarElemento("valor");
+        
+        ListaEnlazadaGenerica<JButton> listaEnlazadaB = new ListaEnlazadaGenerica<>();
+        listaEnlazadaB.agregarElemento(new JButton());
     }
 }
