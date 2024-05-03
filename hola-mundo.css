@@ -1,0 +1,16 @@
+div  {
+	color: blue
+}
+
+.div-verde {
+	background: green
+}
+
+#unico {
+	  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.div-verde #algo {
+	border-style: dotted;
+}

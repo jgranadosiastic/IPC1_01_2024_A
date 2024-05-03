@@ -4,7 +4,10 @@
  */
 package com.jgranados.ipc1_01_2024_a.threads.tragamonedas.frontend;
 
+import com.jgranados.ipc1_01_2024_a.threads.tragamonedas.backend.BitacoraHTML;
 import com.jgranados.ipc1_01_2024_a.threads.tragamonedas.backend.Tragamonedas;
+import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,12 +17,25 @@ import javax.swing.JOptionPane;
 public class TragamonedasFrame extends javax.swing.JFrame {
 
     private Tragamonedas tragamonedas;
+    private BitacoraHTML bitacoraHtml;
+
     /**
      * Creates new form TragamonedasFrame
      */
     public TragamonedasFrame() {
         initComponents();
-        tragamonedas = new Tragamonedas(this);
+
+        /*int returnVal = fileChooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+            File file = fileChooser.getSelectedFile();
+            bitacoraHtml = new BitacoraHTML(file);
+            tragamonedas = new Tragamonedas(this, bitacoraHtml);
+        }*/
+        File file = new File("bitacora.html");
+            bitacoraHtml = new BitacoraHTML(file);
+            tragamonedas = new Tragamonedas(this, bitacoraHtml);
+
     }
 
     /**
@@ -31,12 +47,15 @@ public class TragamonedasFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fileChooser = new javax.swing.JFileChooser();
         pnlCasillas = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblCantMonedas = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         spnApuesta = new javax.swing.JSpinner();
         btnIniciar = new javax.swing.JButton();
+
+        fileChooser.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,35 +124,40 @@ public class TragamonedasFrame extends javax.swing.JFrame {
 
     public void agregarCasillas(Casilla casilla1, Casilla casilla2, Casilla casilla3) {
         pnlCasillas.removeAll();
-        
+
         pnlCasillas.add(casilla1);
         pnlCasillas.add(casilla2);
         pnlCasillas.add(casilla3);
         pnlCasillas.validate();
         pnlCasillas.repaint();
     }
-    
+
     public void avisarGanancia(int ganancia, int cantidadMonedas) {
         JOptionPane.showMessageDialog(this, "Ganó " + ganancia + " monedas");
         lblCantMonedas.setText(cantidadMonedas + "");
     }
-    
+
     public void avisarPerdida(int apuesta) {
         JOptionPane.showMessageDialog(this, "Perdió " + apuesta + " monedas");
     }
-    
+
     public void activarControles(boolean activar) {
         this.spnApuesta.setEnabled(activar);
         this.btnIniciar.setEnabled(activar);
     }
-    
+
     public void toggleControles() {
         this.spnApuesta.setEnabled(!spnApuesta.isEnabled());
         this.btnIniciar.setEnabled(!btnIniciar.isEnabled());
     }
-    
+
+    public JFileChooser getFileChooser() {
+        return fileChooser;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciar;
+    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblCantMonedas;

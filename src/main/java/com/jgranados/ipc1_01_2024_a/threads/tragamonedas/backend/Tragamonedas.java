@@ -21,9 +21,11 @@ public class Tragamonedas {
     private TragamonedasFrame tragamonedasFrame;
     private int apuesta;
     private int cantidadMonedas;
+    private BitacoraHTML bitacoraHtml;
 
-    public Tragamonedas(TragamonedasFrame tragamonedasFrame) {
+    public Tragamonedas(TragamonedasFrame tragamonedasFrame, BitacoraHTML bitacoraHTML) {
         this.tragamonedasFrame = tragamonedasFrame;
+        this.bitacoraHtml = bitacoraHTML;
     }
     
     
@@ -33,6 +35,8 @@ public class Tragamonedas {
         casilla2 = new Casilla(this);
         casilla3 = new Casilla(this);
         tragamonedasFrame.agregarCasillas(casilla1, casilla2, casilla3);
+
+        bitacoraHtml.registrarApuesta(apuesta);
         
         Thread casilla1Thread = new Thread(casilla1);
         Thread casilla2Thread = new Thread(casilla2);
@@ -40,6 +44,9 @@ public class Tragamonedas {
         casilla1Thread.start();
         casilla2Thread.start();
         casilla3Thread.start();
+        
+        
+        
         
     }
     
@@ -55,13 +62,16 @@ public class Tragamonedas {
             // ganancia es el triple
             int ganancia = apuesta * 3;
             cantidadMonedas += ganancia;
+            bitacoraHtml.registrarGanancia(ganancia);
             tragamonedasFrame.avisarGanancia(ganancia, cantidadMonedas);
         } else if (hayDosIguales()) {
             // gana el doble
             int ganancia = apuesta * 3;
             cantidadMonedas += ganancia;
+            bitacoraHtml.registrarGanancia(ganancia);
             tragamonedasFrame.avisarGanancia(ganancia, cantidadMonedas);
         } else {
+            bitacoraHtml.registrarPerdida(apuesta);
             tragamonedasFrame.avisarPerdida(apuesta);
         }
     }
